@@ -1,18 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-import { Navbar, NavbarBrand } from 'reactstrap';
+import React, { Component } from 'react';
 
+import Main from './components/MainComponent'
+import { BrowserRouter } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <Navbar dark color="primary">
-        <div className="container">
-          <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
+class App extends Component {
+  
+
+  render() { 
+    return ( 
+      <BrowserRouter>
+        <div >
+          <Main />  
         </div>
-      </Navbar>
-  </div>
-  );
+      </BrowserRouter>
+    );
+  }
 }
-
+ 
 export default App;
+
