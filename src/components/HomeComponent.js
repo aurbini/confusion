@@ -1,34 +1,55 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap'
+import Loading from './LoadingComponent'
 
-
-const RenderCard = ({item}) => {
-  console.log(item)
-  return (
-    <Card >
-      <CardImg src={item.image} alt={item.name} />
-      <CardBody >
-        <CardTitle>{item.name} </CardTitle>
-        {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle>: null}
-        <CardText>{item.description}</CardText>
-      </CardBody>
-    </Card>
-  )
+const RenderCard = ({item, isLoading, errMess}) => {
+  console.log(item, isLoading, errMess)
+  if(isLoading){
+    return (
+      <Loading />
+    )
+  }else if(errMess){
+    return (
+      <h4>{errMess}</h4>
+    )
+  }else{
+    return (
+      <Card >
+        <CardImg src={item.image} alt={item.name} />
+        <CardBody >
+          <CardTitle>{item.name} </CardTitle>
+          {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle>: null}
+          <CardText>{item.description}</CardText>
+        </CardBody>
+      </Card>
+    ) 
+  }
 }
 
-const Home = ({leader, dish, promotion}) => {
-  console.log(dish)
+const Home = ({leader, dish, promotion, dishesLoading, dishesErrMess}) => {
   return ( 
     <div className="container">
       <div className="row align-items-start">
         <div className="col-12 col-md m-1">
-          <RenderCard item={dish} />
+          <RenderCard 
+            item={dish} 
+            isLoading={dishesLoading}
+            errMess={dishesErrMess} 
+          />
         </div>
         <div className="col-12 col-md m-1">
-          <RenderCard item={promotion} />
+          <RenderCard 
+            item={promotion}
+            isLoading={dishesLoading}
+            errMess={dishesErrMess} 
+          />
         </div> 
         <div className="col-12 col-md m-1">
-          <RenderCard item={leader} />
+          <RenderCard 
+            item={leader}
+            isLoading={dishesLoading}
+            errMess={dishesErrMess} 
+          />
         </div>
       </div>
     </div>
