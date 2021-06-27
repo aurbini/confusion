@@ -11,14 +11,14 @@ const RenderMenuItem = ({ dish }) => {
         <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
         <CardImgOverlay>
           <CardTitle >{dish.name}</CardTitle>
-        </CardImgOverlay>
+        </CardImgOverlay> 
       </Link>
     </Card>
   )
 }
 
 const Menu = (props) => {
-
+  console.log(props)
   const menu = props.dishes.dishes.map((dish) => {
     return (
       <div key={dish.id} className="col-12 col-md-5 m-1">
@@ -27,7 +27,7 @@ const Menu = (props) => {
     );
   });
 
-  if(props.dishes.isLoading){
+  if(props.dishes.dishes.isLoading){
     return (  
       <div className="container">
         <div className="row">
@@ -36,7 +36,7 @@ const Menu = (props) => {
       </div>  
     )
   }
-  else if(props.dishes.errMess){
+  else if(props.dishes.dishes.errMess){
       return (  
         <div className="container">
           <div className="row">
